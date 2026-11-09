@@ -421,7 +421,7 @@ function restoreFeedback(){
   document.querySelectorAll('textarea').forEach(updWC);
   if (db) paintSubs();
 }
-const trapHTML = it => it.trap ? `<div class="trapnote"><b>Bẫy từ playlist.</b> ${esc(it.trap)}</div>` : '';
+const trapHTML = it => it.trap ? `<div class="trapnote"><b>Lỗi hay gặp.</b> ${esc(it.trap)}</div>` : '';
 const noteHTML = it => it.n ? `<div>${esc(it.n)}</div>` : '';
 function ansList(it){ return it.a.map(a => `<em>${esc(expand(a)[0])}</em>`).join(' · '); }
 
@@ -459,7 +459,7 @@ document.addEventListener('click', async e => {
       const mark = host.querySelector('.no'); if (mark && !mark.querySelector('.done-mark')) mark.insertAdjacentHTML('beforeend', '<br><span class="done-mark" title="Đã làm đúng">✓</span>');
       setFB(id, `<div class="fb ok"><b class="h">Chính xác!</b>${noteHTML(it)}${trapHTML(it)}</div>`);
     } else {
-      setFB(id, `<div class="fb no"><b class="h">Chưa khớp đáp án.</b><div class="muted">Nếu bạn viết khác mà vẫn đúng, hãy hỏi Claude. Hoặc bấm "Đáp án" để xem.</div>${sample || db ? `<div class="row">${sample ? '<button class="b ai" data-act="ask">Hỏi Claude câu này có đúng không</button>' : ''}${db ? '<button class="b" data-act="submit">Gửi cho Claude sửa</button>' : ''}</div>` : ''}</div>`);
+      setFB(id, `<div class="fb no"><b class="h">Chưa khớp đáp án.</b><div class="muted">Đáp án chấp nhận nhiều cách viết nhưng chưa phải tất cả. Bấm "Đáp án" để đối chiếu.</div>${sample || db ? `<div class="row">${sample ? '<button class="b ai" data-act="ask">Hỏi Claude câu này có đúng không</button>' : ''}${db ? '<button class="b" data-act="submit">Gửi cho Claude sửa</button>' : ''}</div>` : ''}</div>`);
     }
     return;
   }
