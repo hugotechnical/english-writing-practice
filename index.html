@@ -115,6 +115,40 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--b
 .resetp label{display:flex;gap:8px;align-items:flex-start;font-size:14px;cursor:pointer}
 .resetp label input{margin-top:3px}
 button.b.danger{background:var(--red);border-color:var(--red);color:var(--paper)}
+/* theory */
+details.th{margin:4px 0 10px;border:1px solid var(--rule);border-left:3px solid var(--blue);border-radius:6px;background:var(--card)}
+details.th>summary{cursor:pointer;padding:8px 12px;font-weight:600;color:var(--blue);font-size:14px}
+.thbody{padding:0 14px 12px}
+.thlinks{font-size:14px;margin:4px 0 10px}
+.thlinks a,.toc a,.lesson a,.topic a{color:var(--blue)}
+.sum{font-style:italic;color:var(--muted);margin:6px 0}
+.tb{margin:10px 0 0;max-width:76ch}
+.tb h4{font:600 15px/1.35 var(--body);margin:0 0 4px}
+.tb p{margin:4px 0}
+.tb ul{margin:4px 0;padding-left:20px}
+.tb li{margin:3px 0}
+.tb u{text-decoration-color:var(--blue);text-decoration-thickness:2px;text-underline-offset:3px}
+.tt{overflow-x:auto;margin:6px 0;border:1px solid var(--rule);border-radius:6px}
+.tt table{border-collapse:collapse;width:100%;font-size:13.5px}
+.tt th,.tt td{text-align:left;vertical-align:top;padding:6px 9px;border-bottom:1px solid var(--rule)}
+.tt th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--paper)}
+.tt tr:last-child td{border-bottom:0}
+.exs{display:grid;gap:4px;margin:6px 0}
+.ex{margin:0;padding:6px 10px;background:var(--bluebg);border-radius:6px;font-size:14.5px}
+.mist li s{color:var(--red)}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 24px;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:12px 16px;margin:8px 0 4px}
+.toc>div{min-width:0}
+.toch{font:600 12px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.toc ol{margin:0;padding-left:20px;font-size:14px;display:grid;gap:2px}
+h2.part{font:700 22px/1.2 var(--display);margin:34px 0 0;padding-top:10px;border-top:3px double var(--rule)}
+article.lesson{margin:18px 0 0;border-top:2px solid var(--ink);padding-top:12px;scroll-margin-top:96px}
+section.set{scroll-margin-top:96px}
+a.golink{display:inline-block;text-decoration:none;margin-top:6px}
+/* topics */
+.wrapseg{flex-wrap:wrap;border-radius:10px;margin:6px 0 4px}
+.tvocab{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:baseline;margin:6px 0 2px;font-size:13px}
+.chip{display:inline-block;font-size:12.5px;padding:1px 8px;border:1px solid var(--rule);border-radius:99px;background:var(--card)}
+.prompt{font-size:15px;line-height:1.6}
 .inbox{margin-top:12px;border:1px solid var(--rule);border-radius:8px;background:var(--card);padding:8px 12px}
 .inbox summary{cursor:pointer;font-weight:600}
 .inbox ul{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px;font-size:14px}
@@ -134,7 +168,7 @@ footer{border-top:1px solid var(--rule);padding-block:18px 32px;font-size:13px;c
 <header class="band"><div class="wrap">
   <div class="eyebrow">Bộ luyện viết · Ngữ pháp THPT · B1 → C1</div>
   <h1>Thang luyện viết</h1>
-  <p class="lede">150 bài viết theo 5 cấp: cụm từ, mệnh đề, câu, đoạn văn và bài luận, từ B1 đến C1, bám chương trình ngữ pháp tiếng Anh THPT. Các câu gắn nhãn <span class="trapchip" style="margin:0">BẪY</span> luyện những lỗi ngữ pháp hay bị dạy sai hoặc hiểu nhầm.</p>
+  <p class="lede">Học lý thuyết (ngữ pháp cho bài viết và kỹ năng viết từng dạng bài), luyện 150 bài theo 5 cấp từ cụm từ đến bài luận (B1–C1), rồi viết tự do với 48 đề theo chủ đề. Các câu gắn nhãn <span class="trapchip" style="margin:0">BẪY</span> luyện những lỗi ngữ pháp hay bị dạy sai hoặc hiểu nhầm.</p>
   <div class="overall"><b id="ovNum">0/150</b><div class="bar" aria-hidden="true"><i id="ovBar" style="width:0"></i></div><span>Tiến độ lưu trên trình duyệt này</span><button type="button" class="b" id="resetOpen" aria-expanded="false" aria-controls="resetPanel">Làm lại từ đầu</button></div>
   <div class="resetp" id="resetPanel" hidden></div>
   <p class="muted" id="resetMsg" aria-live="polite" hidden></p>
@@ -164,9 +198,12 @@ footer{border-top:1px solid var(--rule);padding-block:18px 32px;font-size:13px;c
 <footer><div class="wrap">Câu ngắn được chấm bằng cách so với đáp án (chấp nhận nhiều cách viết). Đoạn văn và bài luận có checklist yêu cầu, dàn ý và bài mẫu để tự đối chiếu. Tiến độ chỉ lưu trên trình duyệt của bạn.</div></footer>
 
 <script src="data.js"></script>
+<script src="theory.js"></script>
 <script>
 (function(){
 const STAGES = window.STAGES, SETS = window.SETS;
+const GRAMMAR = window.GRAMMAR || {}, GUIDE = window.GUIDE || [], GUIDE_FOR = window.GUIDE_FOR || {}, TYPES = window.TYPES || {}, TOPICS = window.TOPICS || [];
+const NAV = [{key:'ly-thuyet', name:'Lý thuyết', en:'Theory'}, ...STAGES, {key:'de-viet', name:'Đề tự luyện', en:'Topics'}];
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const KEY = 'thang-luyen-viet:v1';
@@ -181,6 +218,14 @@ SETS.forEach(set => {
   if (set.type === 'order' || set.type === 'write') ITEMS.push({id:set.id, set, solo:true});
   else set.items.forEach((it, i) => ITEMS.push({id:set.id+'-'+(i+1), set, it, i}));
 });
+/* đề tự luyện: không tính vào 150 bài */
+TOPICS.forEach(t => t.prompts.forEach((p, j) => {
+  const ty = TYPES[p.type]; if (!ty) return;
+  const id = `tp-${t.key}-${j+1}`;
+  ITEMS.push({id, solo:true, extra:true, set:{id, stage:'de-viet', type:'write', lv:p.lv, topic:t.key,
+    title:`${ty.name} · ${t.name}`, task:p.text, words:ty.words[p.lv], req:ty.req, outline:ty.outline, guide:ty.guide}});
+}));
+const CORE = ITEMS.filter(x => !x.extra);
 
 /* answer matching */
 function expand(s){
@@ -281,12 +326,26 @@ function aiErr(e){
 
 /* filters + routing */
 let LV = 'all';
-const VALID = STAGES.map(s => s.key);
-const cur = () => VALID.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'phrase';
+const VALID = NAV.map(s => s.key);
+const cur = () => VALID.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'ly-thuyet';
+let pendingScroll = null;
+function goTo(view, elId){
+  if (cur() === view && location.hash) { const el = document.getElementById(elId); if (el) { if (el.tagName === 'DETAILS') el.open = true; el.scrollIntoView({block:'start'}); } return; }
+  pendingScroll = elId; location.hash = view;
+}
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-guide]'); if (g) { e.preventDefault(); goTo('ly-thuyet', g.dataset.guide); return; }
+  const s = e.target.closest('[data-goset]'); if (s) { e.preventDefault(); const set = SETS.find(x => x.id === s.dataset.goset); if (set) goTo(set.stage, 'set-' + set.id); }
+});
 $('#lvSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; LV = b.dataset.lv; document.querySelectorAll('#lvSeg button').forEach(x => x.setAttribute('aria-pressed', x === b)); render(); });
 $('#trapOnly').addEventListener('change', render);
 $('#hideDone').addEventListener('change', render);
-window.addEventListener('hashchange', () => { render(); window.scrollTo({top: $('header.band').offsetHeight, behavior:'auto'}); });
+window.addEventListener('hashchange', () => {
+  render();
+  const el = pendingScroll && document.getElementById(pendingScroll); pendingScroll = null;
+  if (el) { if (el.tagName === 'DETAILS') el.open = true; el.scrollIntoView({block:'start'}); }
+  else window.scrollTo({top: $('header.band').offsetHeight, behavior:'auto'});
+});
 /* Làm lại từ đầu */
 S.cut = S.cut || {};
 const resetPanel = $('#resetPanel'), resetOpen = $('#resetOpen'), resetMsg = $('#resetMsg');
@@ -294,11 +353,11 @@ function openReset(open){
   resetPanel.hidden = !open; resetOpen.setAttribute('aria-expanded', open);
   if (!open) return;
   resetMsg.hidden = true;
-  const st = STAGES.find(s => s.key === cur());
+  const st = NAV.find(s => s.key === cur());
   resetPanel.innerHTML = `<h2>Làm lại từ đầu</h2>
     <fieldset><legend>Phạm vi</legend>
-      <label><input type="radio" name="rscope" id="rsAll" value="all" checked> Cả 5 cấp (toàn bộ 150 bài)</label>
-      <label><input type="radio" name="rscope" id="rsStage" value="${st.key}"> Chỉ cấp đang mở: ${esc(st.name)}</label>
+      <label><input type="radio" name="rscope" id="rsAll" value="all" checked> Tất cả (150 bài của thang và đề tự luyện)</label>
+      ${st.key !== 'ly-thuyet' ? `<label><input type="radio" name="rscope" id="rsStage" value="${st.key}"> Chỉ mục đang mở: ${esc(st.name)}</label>` : ''}
     </fieldset>
     <div class="muted">Câu trả lời, bài viết, dấu ✓ và các ô yêu cầu đã tick trong phạm vi này sẽ bị xoá.</div>
     ${db ? `<label><input type="checkbox" id="rsDel"> Xoá hẳn các bài đã gửi cho Claude sửa (kể cả nhận xét) trong phạm vi này. Không khôi phục được.</label>` : ''}
@@ -325,7 +384,7 @@ async function doReset(){
     }
   }
   recomputeSubs(); openReset(false); render();
-  const where = scope === 'all' ? 'cả 5 cấp' : 'cấp ' + STAGES.find(s => s.key === scope).name;
+  const where = scope === 'all' ? 'toàn bộ' : 'mục ' + NAV.find(s => s.key === scope).name;
   resetMsg.textContent = `Đã làm mới ${where}.` + (del ? ` Đã xoá ${removed} bài đã gửi${failed ? `, ${failed} bài chưa xoá được` : ''}.` : '');
   resetMsg.hidden = false;
   if (scope === 'all') location.hash = 'phrase';
@@ -340,17 +399,22 @@ function recomputeSubs(){
 }
 
 function progress(){
-  const n = ITEMS.filter(x => S.done[x.id]).length;
-  $('#ovNum').textContent = n + '/' + ITEMS.length;
-  $('#ovBar').style.width = (100 * n / ITEMS.length) + '%';
-  $('#ladder').innerHTML = STAGES.map((s, i) => {
+  const n = CORE.filter(x => S.done[x.id]).length;
+  $('#ovNum').textContent = n + '/' + CORE.length;
+  $('#ovBar').style.width = (100 * n / CORE.length) + '%';
+  $('#ladder').innerHTML = NAV.map(s => {
     const its = ITEMS.filter(x => x.set.stage === s.key), d = its.filter(x => S.done[x.id]).length;
-    return `<a href="#${s.key}" ${cur() === s.key ? 'aria-current="page"' : ''}><span class="k">Cấp ${i+1} · ${s.en}</span><span class="nm">${s.name}</span><span class="pr">${d}/${its.length}</span></a>`;
+    const i = STAGES.indexOf(s);
+    const k = i >= 0 ? `Cấp ${i+1} · ${s.en}` : s.en;
+    const pr = s.key === 'ly-thuyet' ? `${Object.keys(GRAMMAR).length} bài · ${GUIDE.length} chương` : `${d}/${its.length}`;
+    return `<a href="#${s.key}" ${cur() === s.key ? 'aria-current="page"' : ''}><span class="k">${k}</span><span class="nm">${s.name}</span><span class="pr">${pr}</span></a>`;
   }).join('');
 }
 
 function render(){
   progress();
+  if (cur() === 'ly-thuyet') { $('#stage').innerHTML = theoryView(); return; }
+  if (cur() === 'de-viet') { $('#stage').innerHTML = topicsView(); restoreFeedback(); return; }
   const st = STAGES.find(s => s.key === cur());
   const trapOnly = $('#trapOnly').checked, hideDone = $('#hideDone').checked;
   const sets = SETS.filter(s => s.stage === st.key && (LV === 'all' || s.lv === LV));
@@ -374,7 +438,7 @@ function render(){
       if (!lis) return;
       body = `<ol class="items">${lis}</ol>`;
     }
-    html += `<section class="set" id="set-${set.id}"><div class="set-h"><span class="lv">${set.lv}</span><h3>${esc(set.title)}</h3>${set.v ? `<span class="vid">video ${esc(set.v)}</span>` : ''}</div>${set.instr ? `<p class="instr">${esc(set.instr)}</p>` : ''}${body}</section>`;
+    html += `<section class="set" id="set-${set.id}"><div class="set-h"><span class="lv">${set.lv}</span><h3>${esc(set.title)}</h3>${set.v ? `<span class="vid">video ${esc(set.v)}</span>` : ''}</div>${set.instr ? `<p class="instr">${esc(set.instr)}</p>` : ''}${theoryBox(set)}${body}</section>`;
   });
   if (!shown) html += `<p class="empty">Không có bài nào khớp bộ lọc. Hãy chọn "Tất cả" hoặc bỏ tick các ô lọc.</p>`;
   $('#stage').innerHTML = html;
@@ -396,11 +460,11 @@ function orderHTML(set){
    <div class="row"><input id="in-${id}" type="text" value="${esc(v)}" placeholder="vd: bdaec" autocomplete="off" spellcheck="false" aria-label="Thứ tự câu"><button class="b pri" data-act="check">Kiểm tra</button><button class="b" data-act="reveal">Đáp án</button>${S.done[id] ? '<span class="done-mark" style="align-self:center">✓ Đã đúng</span>' : ''}</div>
    <div class="fbwrap" aria-live="polite"></div></div>`;
 }
-function writeHTML(set){
+function writeHTML(set, opt = {}){
   const id = set.id, v = S.val[id] || '', r = S.req[id] || {};
   return `<div class="task it solo" data-id="${id}">
     <div class="meta"><span>${set.words[0]}–${set.words[1]} từ</span><span>Trình độ mục tiêu ${set.lv}</span>${S.done[id] ? '<span class="done-mark">✓ Đã hoàn thành</span>' : ''}</div>
-    <div>${esc(set.task)}</div>
+    ${opt.noTask ? '' : `<div>${esc(set.task)}</div>`}
     <div><div class="muted" style="margin-bottom:4px">Yêu cầu (tự tick khi bài đã đạt):</div><ul class="req">${set.req.map((q, k) => `<li><label><input type="checkbox" data-req="${k}" ${r[k] ? 'checked' : ''}><span>${esc(q)}</span></label></li>`).join('')}</ul></div>
     <textarea id="in-${id}" placeholder="Viết bài của bạn ở đây…" aria-label="Bài viết">${esc(v)}</textarea>
     <div class="row" style="align-items:center"><span class="wc" data-wc>0 từ</span><span style="flex:1"></span>
@@ -409,9 +473,69 @@ function writeHTML(set){
       <button class="b" data-act="selfdone">${S.done[id] ? 'Bỏ đánh dấu' : 'Đánh dấu đã xong'}</button></div>
     <div class="fbwrap" aria-live="polite"></div><div class="subwrap" data-sub="${id}"></div>
     ${set.outline ? `<details class="more"><summary>Gợi ý dàn ý</summary><ol class="outline">${set.outline.map(o => `<li>${esc(o)}</li>`).join('')}</ol></details>` : ''}
-    <details class="more"><summary>Xem bài mẫu</summary><div class="model">${esc(set.model)}</div></details>
+    ${set.model ? `<details class="more"><summary>Xem bài mẫu</summary><div class="model">${esc(set.model)}</div></details>` : ''}
   </div>`;
 }
+
+/* Lý thuyết */
+function blocksHTML(sections){
+  return sections.map(b => `<div class="tb">${b.h ? `<h4>${b.h}</h4>` : ''}${b.p ? `<p>${b.p}</p>` : ''}
+    ${b.list ? `<ul>${b.list.map(x => `<li>${x}</li>`).join('')}</ul>` : ''}
+    ${b.table ? `<div class="tt"><table><thead><tr>${b.table.head.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${b.table.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : ''}
+    ${b.ex ? `<div class="exs">${b.ex.map(x => `<p class="ex">${x}</p>`).join('')}</div>` : ''}</div>`).join('');
+}
+function mistakesHTML(m){
+  if (!m || !m.length) return '';
+  return `<div class="tb"><h4>Lỗi hay gặp</h4><ul class="mist">${m.map(([w, r, why]) => `<li><s>${esc(w)}</s> → <b>${esc(r)}</b><span class="muted"> ${esc(why)}</span></li>`).join('')}</ul></div>`;
+}
+function theoryBox(set){
+  const g = GRAMMAR[set.id];
+  if (g) return `<details class="th"><summary>Ôn lý thuyết: ${esc(g.title)}</summary><div class="thbody"><p class="sum">${esc(g.sum)}</p>${blocksHTML(g.sections)}${mistakesHTML(g.mistakes)}</div></details>`;
+  const ch = (GUIDE_FOR[set.id] || []).map(id => GUIDE.find(c => c.id === id)).filter(Boolean);
+  if (ch.length) return `<p class="thlinks">Đọc trước: ${ch.map(c => `<a href="#ly-thuyet" data-guide="${c.id}">${esc(c.title)}</a>`).join(' · ')}</p>`;
+  return '';
+}
+function theoryView(){
+  const groups = STAGES.slice(0, 3).map(st => ({st, sets: SETS.filter(s => s.stage === st.key && GRAMMAR[s.id])}));
+  const toc = `<nav class="toc" aria-label="Mục lục lý thuyết">
+    <div><div class="toch">Kỹ năng viết</div><ol>${GUIDE.map(c => `<li><a href="#ly-thuyet" data-guide="${c.id}">${esc(c.title)}</a></li>`).join('')}</ol></div>
+    ${groups.map(g => `<div><div class="toch">Ngữ pháp · ${g.st.name}</div><ol>${g.sets.map(s => `<li><a href="#ly-thuyet" data-guide="gr-${s.id}">${esc(GRAMMAR[s.id].title)}</a> <span class="lv">${s.lv}</span></li>`).join('')}</ol></div>`).join('')}
+  </nav>`;
+  const guide = GUIDE.map(c => `<article class="lesson" id="${c.id}"><div class="set-h"><span class="lv">${esc(c.lv)}</span><h3>${esc(c.title)}</h3></div><p class="sum">${esc(c.sum)}</p>${blocksHTML(c.sections)}</article>`).join('');
+  const gram = groups.map(g => g.sets.map(s => { const t = GRAMMAR[s.id];
+    return `<article class="lesson" id="gr-${s.id}"><div class="set-h"><span class="lv">${s.lv}</span><h3>${esc(t.title)}</h3><span class="vid">${g.st.name}</span></div><p class="sum">${esc(t.sum)}</p>${blocksHTML(t.sections)}${mistakesHTML(t.mistakes)}<p><a class="b pri golink" href="#${s.stage}" data-goset="${s.id}">Làm bài luyện: ${esc(s.title)} →</a></p></article>`; }).join('')).join('');
+  return `<div class="stage-head"><h2>Lý thuyết</h2><p>Học trước, luyện sau. Phần <b>Kỹ năng viết</b> hướng dẫn cách viết câu, đoạn văn và từng dạng bài. Phần <b>Ngữ pháp</b> gắn với từng nhóm bài tập; cuối mỗi bài có nút chuyển sang làm bài luyện.</p></div>
+    ${toc}<h2 class="part">Kỹ năng viết</h2>${guide}<h2 class="part">Ngữ pháp cho bài viết</h2>${gram}`;
+}
+
+/* Đề tự luyện */
+let TOPIC = 'all';
+function topicsView(){
+  const hideDone = $('#hideDone').checked;
+  const chips = `<div class="seg wrapseg" role="group" aria-label="Chọn chủ đề">${[{key:'all', name:'Tất cả'}, ...TOPICS].map(t => `<button type="button" data-topic="${t.key}" aria-pressed="${TOPIC === t.key}">${esc(t.name)}</button>`).join('')}</div>`;
+  let n = 0;
+  const body = TOPICS.filter(t => TOPIC === 'all' || t.key === TOPIC).map(t => {
+    const items = ITEMS.filter(x => x.extra && x.set.topic === t.key && (LV === 'all' || x.set.lv === LV) && !(hideDone && S.done[x.id]));
+    if (!items.length) return '';
+    n += items.length;
+    return `<section class="set topic" id="tp-${t.key}"><div class="set-h"><h3>${esc(t.name)}</h3><span class="vid">${esc(t.en)}</span></div>
+      <div class="tvocab"><span class="muted">Từ vựng:</span> ${t.vocab.map(v => `<span class="chip">${esc(v)}</span>`).join('')}</div>
+      <p class="muted">Gợi ý ý tưởng: ${t.ideas.map(esc).join(' · ')}</p>
+      <ol class="items">${items.map((x, i) => { const s = x.set;
+        return `<li class="it" data-id="${x.id}"><span class="no">${i+1}${S.done[x.id] ? '<br><span class="done-mark">✓</span>' : ''}</span><div class="body">
+          <div><span class="lv">${s.lv}</span> <b>${esc(s.title.split(' · ')[0])}</b> · <a href="#ly-thuyet" data-guide="${s.guide}">Cách viết dạng này</a></div>
+          <div class="prompt">${esc(s.task)}</div>
+          <details class="more" ${S.val[x.id] ? 'open' : ''}><summary>Viết bài này</summary>
+            <ol class="outline">${s.outline.map(o => `<li>${esc(o)}</li>`).join('')}</ol>
+            ${writeHTML(s, {noTask:true}).replace(`class="task it solo" data-id="${x.id}"`, `class="task" data-wid="${x.id}"`)}
+          </details></div></li>`; }).join('')}</ol></section>`;
+  }).join('');
+  return `<div class="stage-head"><h2>Đề tự luyện</h2><p>48 đề theo 12 chủ đề quen thuộc, từ B1 đến C1. Mỗi đề có dàn ý theo dạng bài, checklist tự chấm và ô viết bài (tự lưu). Đề tự luyện không tính vào 150 bài của thang.</p></div>${chips}${body || '<p class="empty">Không có đề nào khớp bộ lọc.</p>'}`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('button[data-topic]'); if (!b) return;
+  TOPIC = b.dataset.topic; render();
+});
 
 /* feedback */
 const FB = {}; // id -> html, survives re-render
